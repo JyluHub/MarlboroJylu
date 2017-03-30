@@ -8,7 +8,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class TestApplication {
 
     public static void main(String[] args) {
-        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("conf/application.xml");
+        ClassPathXmlApplicationContext ac = new ClassPathXmlApplicationContext("applicationTest.xml");
         EmployeeService service = (EmployeeService) ac.getBean("employeeService");
         service.sayHello();
         ac.close();
