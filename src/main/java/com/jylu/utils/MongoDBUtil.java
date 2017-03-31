@@ -23,22 +23,23 @@ public class MongoDBUtil {
 
     private MongoDBUtil(){}
 
-    public static void main(String[] args){
+    /**
+     * 获取MongoCollection
+     * @return
+     */
+    public static MongoCollection<Document> getMongoCollection(){
         MongoClient mongoClient = new MongoClient("localhost", 27017);
         MongoDatabase mongoDatabase = mongoClient.getDatabase("MarlboroJylu");
         MongoCollection<Document> mongoCollection = mongoDatabase.getCollection("user");
-//        Document document;
-//        List<Document> list = new ArrayList<>(100000);
-//        for(int index = 1; index <= 100000; index++){
-//            document = new Document("_id", index).append("name", "lujiayun"+index);
-//            list.add(document);
-//        }
-//        mongoCollection.insertMany(list);
-//        System.out.println("插入10万条数据成功");
-        FindIterable<Document> iterable = mongoCollection.find();
-        MongoCursor<Document> cursor = iterable.iterator();
-        while(cursor.hasNext()){
-            System.out.println(cursor.next());
-        }
+        return mongoCollection;
+    }
+
+    /**
+     * 批量插入
+     * @param mongoCollection
+     * @param documentList
+     */
+    public static void insertManyDocument(MongoCollection<Document> mongoCollection, List<Document> documentList){
+        mongoCollection.insertMany(documentList);
     }
 }
