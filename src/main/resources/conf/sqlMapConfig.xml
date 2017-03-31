@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--全局设置-->
+    <!--<settings>-->
+        <!--<setting name="cacheEnabled" value="true"/>-->
+        <!--<setting name="lazyLoadingEnabled" value="true"/>-->
+        <!--<setting name="multipleResultSetsEnabled" value="true"/>-->
+        <!--<setting name="useColumnLabel" value="true"/>-->
+        <!--<setting name="useGeneratedKeys" value="false"/>-->
+        <!--<setting name="autoMappingBehavior" value="PARTIAL"/>-->
+        <!--<setting name="autoMappingUnknownColumnBehavior" value="WARNING"/>-->
+        <!--<setting name="defaultExecutorType" value="SIMPLE"/>-->
+        <!--<setting name="defaultStatementTimeout" value="25"/>-->
+        <!--<setting name="defaultFetchSize" value="100"/>-->
+        <!--<setting name="safeRowBoundsEnabled" value="false"/>-->
+        <!--<setting name="mapUnderscoreToCamelCase" value="false"/>-->
+        <!--<setting name="localCacheScope" value="SESSION"/>-->
+        <!--<setting name="jdbcTypeForNull" value="OTHER"/>-->
+        <!--<setting name="lazyLoadTriggerMethods" value="equals,clone,hashCode,toString"/>-->
+    <!--</settings>-->
+
+    <!--别名-->
+    <!--<typeAliases>-->
+        <!--<typeAlias type="employee" alias="com.jylu.entity.Employee" />-->
+        <!--<typeAlias type="user" alias="com.jylu.entity.Users" />-->
+        <!--<package name="com.jylu.entity" />-->
+    <!--</typeAliases>-->
+
+    <!--类型处理器-覆盖已经存在的处理Java数据类型和数据库数据类型的转换-->
+    <!--<typeHandlers>-->
+        <!--<typeHandler handler="org.mybatis.example.ExampleTypeHandler"/>-->
+        <!--<package name="org.mybatis.example" />-->
+    <!--</typeHandlers>-->
+
+    <!--对象工厂-->
+    <!--<objectFactory type="org.mybatis.example.ExampleObjectFactory">-->
+        <!--<property name="someProperty" value="100"/>-->
+    <!--</objectFactory>-->
+
+    <!--插件-->
+    <!--<plugins>-->
+        <!--<plugin interceptor="org.mybatis.example.ExamplePlugin">-->
+            <!--<property name="someProperty" value="100"/>-->
+        <!--</plugin>-->
+    <!--</plugins>-->
+
+    <!--Mapper映射-->
+    <!--<mappers>-->
+        <!--<package name="com.jylu.dao" />-->
+    <!--</mappers>-->
+
+</configuration>
