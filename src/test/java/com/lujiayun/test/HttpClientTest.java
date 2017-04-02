@@ -1,6 +1,7 @@
 package com.lujiayun.test;
 
 import com.jylu.utils.HttpClientUtil;
+import org.junit.jupiter.api.Test;
 
 /**
  * ClassName: HttpClientTest <br/>
@@ -13,7 +14,8 @@ import com.jylu.utils.HttpClientUtil;
  */
 public class HttpClientTest {
 
-    public static void main(String[] args) {
+    @Test
+    public void HttpClientTest() {
         String responseContent = HttpClientUtil.getInstance()
                 .sendHttpsGet("https://www.baidu.com");
         System.out.println(responseContent);

@@ -1,5 +1,7 @@
 package com.lujiayun.test;
 
+import com.jylu.entity.Users;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -16,7 +18,7 @@ public class LoadClass {
 
     public static void main(String[] args) {
         try {
-            Class c = Class.forName("com.lujiayun.test.User");
+            Class c = Class.forName("com.lujiayun.entity.Users");
             // java中每个类型都有class属性
 //            Class c = User.class;
             // java语言中任何一个java对象都有getClass 方法
@@ -32,10 +34,10 @@ public class LoadClass {
             Method method = c.getDeclaredMethod("sayHello", String.class);
             method.setAccessible(true);
             System.out.println(method.getName());
-            User demo = new User();
-            method.invoke(demo, "hello");
+            Users user = new Users();
+            method.invoke(user, "hello");
             // 调用无参构造函数,实例化一个类
-//            User user = (User)c.newInstance();
+//            Users user = (Users)c.newInstance();
 //            user.setName("lujiayun");
 //            System.out.println(user.getName());
         } catch (ClassNotFoundException e) {

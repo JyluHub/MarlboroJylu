@@ -1,6 +1,7 @@
 package com.lujiayun.test;
 
 import com.jylu.utils.DateUtil;
+import org.junit.jupiter.api.Test;
 
 import java.util.Date;
 
@@ -15,7 +16,8 @@ import java.util.Date;
  */
 public class DateTest {
 
-    public static void main(String[] args) {
+    @Test
+    public void DateTest() {
         String StringDate = "2017-06-05 17:55:00";
         Date date = DateUtil.String2Date(StringDate);
         System.out.println(date);
