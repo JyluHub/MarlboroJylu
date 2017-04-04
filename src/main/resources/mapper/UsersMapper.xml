@@ -10,6 +10,7 @@
         <result property="nikeName" column="nike_name" />
         <result property="age" column="age" />
         <result property="password" column="password" />
+        <result property="interest" column="interest" />
         <result property="email" column="email" />
     </resultMap>
 
