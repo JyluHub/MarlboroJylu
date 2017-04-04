@@ -1,8 +1,6 @@
-package com.jylu.dao;
+package com.jylu.dao.mapper;
 
 import com.jylu.entity.Users;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 /**
  * ClassName: UsersMapper <br/>

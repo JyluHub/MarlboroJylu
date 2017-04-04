@@ -1,6 +1,6 @@
 package com.lujiayun.dao;
 
-import com.jylu.dao.UsersMapper;
+import com.jylu.dao.mapper.UsersMapper;
 import com.jylu.entity.Users;
 import org.junit.Test;
 import org.junit.runner.RunWith;
