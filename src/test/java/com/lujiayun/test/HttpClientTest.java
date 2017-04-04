@@ -1,7 +1,7 @@
 package com.lujiayun.test;
 
 import com.jylu.utils.HttpClientUtil;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * ClassName: HttpClientTest <br/>

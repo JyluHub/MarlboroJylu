@@ -11,16 +11,45 @@ package com.jylu.entity;
  */
 public class Users {
 
-    private String name;
+    private int id;
+
+    private String nikeName;
+
+    private String userName;
 
     private String password;
 
-    public String getName() {
-        return name;
+    private String email;
+
+    private String interest;
+
+    private int age;
+
+    public Users() {
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getNikeName() {
+        return nikeName;
+    }
+
+    public void setNikeName(String nikeName) {
+        this.nikeName = nikeName;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -31,7 +60,44 @@ public class Users {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getInterest() {
+        return interest;
+    }
+
+    public void setInterest(String interest) {
+        this.interest = interest;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", nikeName='" + nikeName + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", interest='" + interest + '\'' +
+                ", age=" + age +
+                '}';
+    }
+
     public void sayHello(){
-        System.out.println(this.name+" say hello!");
+        System.out.println(this.userName+" say hello!");
     }
 }

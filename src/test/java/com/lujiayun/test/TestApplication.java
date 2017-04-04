@@ -1,9 +1,7 @@
 package com.lujiayun.test;
 
 import com.jylu.service.EmployeeService;
-import org.apache.log4j.PropertyConfigurator;
-import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
+import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class TestApplication {

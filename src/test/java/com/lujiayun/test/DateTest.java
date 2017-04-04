@@ -1,7 +1,7 @@
 package com.lujiayun.test;
 
 import com.jylu.utils.DateUtil;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.Date;
 

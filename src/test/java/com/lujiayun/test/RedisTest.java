@@ -1,7 +1,7 @@
 package com.lujiayun.test;
 
 import com.jylu.utils.RedisUtil;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 /**
  * ClassName: RedisTest <br/>

@@ -3,11 +3,7 @@ package com.lujiayun.test;
 import com.jylu.utils.MongoDBUtil;
 import com.mongodb.client.MongoCollection;
 import org.bson.Document;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.junit.Test;
 
 /**
  * ClassName: MongoTest <br/>
