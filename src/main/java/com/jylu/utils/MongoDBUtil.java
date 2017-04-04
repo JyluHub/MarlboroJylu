@@ -5,7 +5,11 @@ import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
+import org.bson.BSON;
+import org.bson.BsonDocument;
 import org.bson.Document;
+import org.bson.codecs.configuration.CodecRegistry;
+import org.bson.conversions.Bson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +34,7 @@ public class MongoDBUtil {
     public static MongoCollection<Document> getMongoCollection(){
         MongoClient mongoClient = new MongoClient("localhost", 27017);
         MongoDatabase mongoDatabase = mongoClient.getDatabase("MarlboroJylu");
-        MongoCollection<Document> mongoCollection = mongoDatabase.getCollection("user");
+        MongoCollection<Document> mongoCollection = mongoDatabase.getCollection("users");
         return mongoCollection;
     }
 
@@ -41,5 +45,25 @@ public class MongoDBUtil {
      */
     public static void insertManyDocument(MongoCollection<Document> mongoCollection, List<Document> documentList){
         mongoCollection.insertMany(documentList);
+    }
+
+    /**
+     * 插入一条数据
+     * @param mongoCollection
+     * @param document
+     */
+    public static void insertOne(MongoCollection<Document> mongoCollection, Document document){
+        mongoCollection.insertOne(document);
+    }
+
+    public static List<Document> findList(MongoCollection<Document> mongoCollection){
+        Bson filter = new Bson() {
+            @Override
+            public <TDocument> BsonDocument toBsonDocument(Class<TDocument> tDocumentClass, CodecRegistry codecRegistry) {
+                return null;
+            }
+        };
+        mongoCollection.find(filter);
+        return null;
     }
 }
