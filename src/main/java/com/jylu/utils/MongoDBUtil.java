@@ -1,18 +1,15 @@
 package com.jylu.utils;
 
-import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
-import com.mongodb.client.MongoDatabase;
-import org.bson.BSON;
+import java.util.List;
+
 import org.bson.BsonDocument;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.conversions.Bson;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.mongodb.MongoClient;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
 /**
  * ClassName: MongoDBUtil <br/>
@@ -26,15 +23,24 @@ import java.util.List;
 public class MongoDBUtil {
 
     private MongoDBUtil(){}
+    
+    public static MongoClient getMongoConnection(){
+    	return new MongoClient("localhost", 27017);
+    }
+    
+    public static void closeMongoConnection(MongoClient mongo){
+    	mongo.close();
+    }
 
     /**
      * 获取MongoCollection
      * @return
      */
     public static MongoCollection<Document> getMongoCollection(){
-        MongoClient mongoClient = new MongoClient("localhost", 27017);
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("MarlboroJylu");
-        MongoCollection<Document> mongoCollection = mongoDatabase.getCollection("users");
+        MongoClient mongoClient = getMongoConnection();
+        MongoDatabase mongoDatabase = mongoClient.getDatabase("jylu");
+        MongoCollection<Document> mongoCollection = mongoDatabase.getCollection("student");
+        closeMongoConnection(mongoClient);
         return mongoCollection;
     }
 

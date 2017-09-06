@@ -17,7 +17,7 @@ import java.util.Date;
 public class DateTest {
 
     @Test
-    public void DateTest() {
+    public void DateTests() {
         String StringDate = "2017-06-05 17:55:00";
         Date date = DateUtil.String2Date(StringDate);
         System.out.println(date);

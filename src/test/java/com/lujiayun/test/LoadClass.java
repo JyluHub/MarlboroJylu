@@ -18,7 +18,7 @@ public class LoadClass {
 
     public static void main(String[] args) {
         try {
-            Class c = Class.forName("com.lujiayun.entity.Users");
+            Class c = Class.forName("com.jylu.entity.Users");
             // java中每个类型都有class属性
 //            Class c = User.class;
             // java语言中任何一个java对象都有getClass 方法

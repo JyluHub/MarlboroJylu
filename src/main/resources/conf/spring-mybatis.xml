@@ -17,7 +17,7 @@
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
         <!-- 数据库基本信息配置 -->
         <property name = "url" value = "${url}" />
-        <property name = "username" value = "${username}" />
+        <property name = "username" value = "${user}" />
         <property name = "password" value = "${password}" />
         <property name = "driverClassName" value = "${driver}" />
         <!-- 最大并发连接数 -->

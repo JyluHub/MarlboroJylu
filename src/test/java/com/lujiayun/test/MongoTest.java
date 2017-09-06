@@ -1,9 +1,14 @@
 package com.lujiayun.test;
 
-import com.jylu.utils.MongoDBUtil;
-import com.mongodb.client.MongoCollection;
 import org.bson.Document;
 import org.junit.Test;
+import org.springframework.data.mongodb.core.query.BasicQuery;
+
+import com.jylu.utils.MongoDBUtil;
+import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 
 /**
  * ClassName: MongoTest <br/>
@@ -25,8 +30,20 @@ public class MongoTest {
     @Test
     public void testInsertOne(){
         MongoCollection<Document> collection = MongoDBUtil.getMongoCollection();
-        Document document = new Document();
-        document.append("_id", 4).append("name", "毕玄").append("age", 35);
-        MongoDBUtil.insertOne(collection, document);
+        Document document = null;
+        for(int i = 0; i < 20; i++){
+        	document = new Document();
+        	document.append("name", "jylu"+i).append("age", 22).append("likes", "Java");
+        	MongoDBUtil.insertOne(collection, document);
+        }
+    }
+    
+    @Test
+    public void testQuery(){
+    	MongoClient mongo = MongoDBUtil.getMongoConnection();
+    	MongoDatabase database = mongo.getDatabase("jylu");
+    	MongoCollection<Document> collection = database.getCollection("student");
+    	
+    	MongoDBUtil.closeMongoConnection(mongo);
     }
 }

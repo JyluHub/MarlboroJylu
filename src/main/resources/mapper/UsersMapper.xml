@@ -22,8 +22,8 @@
         <selectKey keyProperty="id" order="AFTER" resultType="Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        INSERT INTO users(user_name, nike_name, password, age, email)
-        VALUES (#{userName}, #{nikeName}, #{password}, #{age}, #{email})
+        INSERT INTO users(user_name, nike_name, password, age, email, interest)
+        VALUES (#{userName}, #{nikeName}, #{password}, #{age}, #{email}, #{interest})
     </insert>
 
 </mapper>

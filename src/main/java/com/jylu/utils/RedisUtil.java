@@ -19,6 +19,5 @@ public class RedisUtil {
         Jedis redis = new Jedis("localhost", 6379);
         System.out.println(redis.ping());
         redis.set("user:1:name", "路甲云");
-        redis.set("user:2:name", "万梦笛");
     }
 }

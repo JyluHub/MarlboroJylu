@@ -27,19 +27,19 @@ public class UserDaoTest {
     @Test
     public void testInsert() throws Exception {
         Users users = new Users();
-        users.setAge(21);
-        users.setEmail("xxx@qq.com");
-        users.setInterest("绘画");
-        users.setPassword("xxx");
-        users.setUserName("xxx");
-        users.setNikeName("xxx");
+        users.setAge(25);
+        users.setEmail("15000@qq.com");
+        users.setInterest("分布式系统");
+        users.setPassword("scronaldo1994");
+        users.setUserName("lujiayun");
+        users.setNikeName("marlboro");
         usersMapper.insertUser(users);
         System.out.println(users.toString());
     }
 
     @Test
     public void testSelectOne() throws Exception {
-        Users users = usersMapper.selectUserById(2);
+        Users users = usersMapper.selectUserById(1);
         System.out.println(users);
     }
 
