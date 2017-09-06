@@ -2,11 +2,11 @@ package com.lujiayun.test;
 
 import org.bson.Document;
 import org.junit.Test;
-import org.springframework.data.mongodb.core.query.BasicQuery;
 
 import com.jylu.utils.MongoDBUtil;
+import com.mongodb.BasicDBObject;
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
@@ -43,7 +43,9 @@ public class MongoTest {
     	MongoClient mongo = MongoDBUtil.getMongoConnection();
     	MongoDatabase database = mongo.getDatabase("jylu");
     	MongoCollection<Document> collection = database.getCollection("student");
-    	
+    	BasicDBObject queryObject = new BasicDBObject("name", "jylu");
+    	DBObject result = (DBObject) collection.find(queryObject);
+    	System.out.println(result);
     	MongoDBUtil.closeMongoConnection(mongo);
     }
 }

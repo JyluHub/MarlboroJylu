@@ -15,7 +15,7 @@ import org.junit.Test;
 public class HttpClientTest {
 
     @Test
-    public void HttpClientTest() {
+    public void testHttpClient() {
         String responseContent = HttpClientUtil.getInstance()
                 .sendHttpsGet("https://www.baidu.com");
         System.out.println(responseContent);

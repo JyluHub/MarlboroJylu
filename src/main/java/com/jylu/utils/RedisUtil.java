@@ -15,9 +15,11 @@ public class RedisUtil {
 
     private RedisUtil(){}
 
-    public static void getRedisConnection(){
-        Jedis redis = new Jedis("localhost", 6379);
-        System.out.println(redis.ping());
-        redis.set("user:1:name", "路甲云");
+    public static Jedis getRedisConnection(){
+        return new Jedis("localhost", 6379);
+    }
+    
+    public static void closeRedisConnection(Jedis jRedis){
+    	jRedis.close();
     }
 }

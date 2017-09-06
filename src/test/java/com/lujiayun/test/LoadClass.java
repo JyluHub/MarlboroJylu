@@ -18,7 +18,7 @@ public class LoadClass {
 
     public static void main(String[] args) {
         try {
-            Class c = Class.forName("com.jylu.entity.Users");
+            Class<?> c = Class.forName("com.xxx.entity.Users");
             // java中每个类型都有class属性
 //            Class c = User.class;
             // java语言中任何一个java对象都有getClass 方法
@@ -26,7 +26,7 @@ public class LoadClass {
             // 获取类加载器
             ClassLoader classLoader = c.getClassLoader();
             System.out.println(classLoader);
-            Class clazz = classLoader.loadClass("com.lujiayun.test.User");
+            Class<?> clazz = classLoader.loadClass("com.xxx.test.User");
             System.out.println(clazz);
 //            Constructor<String> constructor = c.getConstructor(String.class, String.class);
 //            System.out.println(constructor.getName());
@@ -37,9 +37,9 @@ public class LoadClass {
             Users user = new Users();
             method.invoke(user, "hello");
             // 调用无参构造函数,实例化一个类
-//            Users user = (Users)c.newInstance();
-//            user.setName("lujiayun");
-//            System.out.println(user.getName());
+            Users user1 = (Users)c.newInstance();
+            user1.setUserName("lujiayun");
+            System.out.println(user1.getUserName());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (NoSuchMethodException e) {
@@ -48,7 +48,9 @@ public class LoadClass {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
             e.printStackTrace();
-        }
+        } catch (InstantiationException e) {
+			e.printStackTrace();
+		}
     }
 
 }
