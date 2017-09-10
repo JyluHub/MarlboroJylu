@@ -1,7 +1,7 @@
 package com.jylu.study.algorithm;
 
 /**
- * 
+ * 插入排序
  * @author Lujiayun
  *
  */
