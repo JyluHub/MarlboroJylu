@@ -1,4 +1,4 @@
-package com.jylu.utils.netty;
+package com.jylu.study.netty;
 
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
