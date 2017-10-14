@@ -17,7 +17,7 @@ public class SingletonLazy {
 		System.out.println("懒汉式单利模式调用构造器");
 	}
 	
-	public static SingletonLazy getInstance(){
+	public /*synchronized*/ static SingletonLazy getInstance(){
 		// 会有多线程安全的问题,需要加锁保证单例
 //		if(null == instance){
 //			try {
