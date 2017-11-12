@@ -54,11 +54,17 @@ class CustomThreadPoolExecutor{
      *              当调用allowCoreThreadTimeOut()方法时,核心线程中空闲线程也会被关闭
      * TimeUnit:keepAliveTime的单位
      * workQueue:阻塞队列,用来保存等待被执行的任务的阻塞队列，且任务必须实现Runnable接口,常见的有如下队列
-     *           ArrayBlockingQueue:基于数组结构的有界阻塞队列，按FIFO排序任务;
-     *           LinkedBlockingQueue:基于链表结构的阻塞队列,按FIFO排序任务,吞吐量通常要高于ArrayBlockingQueue;
+     *           ArrayBlockingQueue:基于数组结构的有界阻塞队列，按FIFO排序任务,其内部没有实现读写分离,即生产和消费不能完全并行;
+     *           LinkedBlockingQueue:基于链表结构的阻塞队列,按FIFO排序任务,其内部实现了读写分离,可以完全并行的生产和消费,吞吐量通常要高于ArrayBlockingQueue;
      *           SynchronousQueue:一个不存储元素的阻塞队列,每个插入操作必须等到另一个线程调用移除操作,否则插入操作一
      *                            直处于阻塞状态,吞吐量通常要高于LinkedBlockingQueue；
-     *           priorityBlockingQueue:具有优先级的无界阻塞队列;
+     *           priorityBlockingQueue:具有优先级的无界阻塞队列,优先级的判断通过构造函数传入;
+     *           BlockQueue核心方法：
+     *           offer(object):如果可能的话直接将object放入到队列,失败直接返回false,不阻塞;
+     *           offer(object, TimeOut, TimeUnit):会在指定的时间内将object放入到队列中,失败则直接返回false;
+     *           put(object):将object加到BlockingQueue里,如果BlockQueue没有空间,则调用此方法的线程被阻断直到BlockingQueue里面有空间再继续;
+     *           poll(Timeout,TimeUnit):指定的时间内取走队列头部的元素,否则直接返回false,不阻塞等待;
+     *           take():阻塞等待
      * ThreadFactory:新建线程工厂类
      * RejectedExecutionHandler:线程池的饱和策略,当阻塞队列满了,且没有空闲的工作线程,如果继续提交任务,必须采取一种策略
      *                          处理该任务,JDK线程池默认提供了4种策略：
