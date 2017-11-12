@@ -18,7 +18,7 @@ public class DateUtil {
 
     private DateUtil(){}
 
-    public static final String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    private static final String DATE_PATTERN = "yyyy-MM-dd HH:mm:ss";
 
     /**
      * 字符串转日期

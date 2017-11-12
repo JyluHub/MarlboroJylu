@@ -45,14 +45,13 @@ public class HttpClientUtil {
     private RequestConfig requestConfig = RequestConfig.custom()
             .setConnectionRequestTimeout(15000)
             .setSocketTimeout(15000)
-            .setConnectionRequestTimeout(15000)
             .build();
 
     // 私有化实例属性
     private static HttpClientUtil instance = null;
 
     // 单例模式,提供公共的方法获取该实例
-    public static HttpClientUtil getInstance(){
+    public synchronized static HttpClientUtil getInstance(){
         if(null == instance){
             instance = new HttpClientUtil();
         }

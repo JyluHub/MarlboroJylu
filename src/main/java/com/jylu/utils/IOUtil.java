@@ -45,8 +45,6 @@ public class IOUtil {
                 bw.newLine();
                 bw.flush();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -87,8 +85,6 @@ public class IOUtil {
                 bos.write(byteArray);
                 bos.flush();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -182,8 +178,6 @@ public class IOUtil {
                 // 清空缓冲区重新进入写模式
                 buffer.clear();
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
