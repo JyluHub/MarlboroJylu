@@ -15,14 +15,14 @@
     </resultMap>
 
     <select id="selectUserById" parameterType="Integer" resultMap="user">
-        SELECT DISTINCT * FROM users WHERE id = #{value}
+        SELECT DISTINCT * FROM user WHERE id = #{value}
     </select>
 
     <insert id="insertUser" parameterType="users">
         <selectKey keyProperty="id" order="AFTER" resultType="Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        INSERT INTO users(user_name, nike_name, password, age, email, interest)
+        INSERT INTO user(user_name, nike_name, password, age, email, interest)
         VALUES (#{userName}, #{nikeName}, #{password}, #{age}, #{email}, #{interest})
     </insert>
 
