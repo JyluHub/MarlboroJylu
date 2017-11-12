@@ -1,5 +1,8 @@
-#eclipse files
 /target/
 /.settings/
 .classpath
 .project
+/.idea/
+*.iml
+.gitignore
+/.gitignore
