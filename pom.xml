@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.lujiayun</groupId>
-    <artifactId>MarlboroJylu</artifactId>
+    <artifactId>study</artifactId>
     <packaging>war</packaging>
     <version>1.0</version>
 
