@@ -22,13 +22,16 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         // 当被通知Channel是活跃的时候发送一条消息
-        ctx.writeAndFlush(Unpooled.copiedBuffer("Hello Netty", CharsetUtil.UTF_8));
+        ctx.channel().writeAndFlush(Unpooled.copiedBuffer("Hello Netty", CharsetUtil.UTF_8));
     }
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
         // 打印收到的消息
-        System.out.println("Client received: " + msg.toString(CharsetUtil.UTF_8));
+        if(msg != null){
+            System.out.println("Client received: " + msg.toString(CharsetUtil.UTF_8));
+        }
+        ctx.channel().close();
     }
 
     @Override

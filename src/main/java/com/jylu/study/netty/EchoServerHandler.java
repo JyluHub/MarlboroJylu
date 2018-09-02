@@ -20,12 +20,21 @@ import io.netty.util.CharsetUtil;
 @ChannelHandler.Sharable
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
+    /**
+     * 读取客户端通道的数据
+     * @param ctx  ctx
+     * @param msg  msg
+     * @throws Exception
+     */
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-        ByteBuf in = (ByteBuf)msg;
-        System.out.println("Server received: " + in.toString(CharsetUtil.UTF_8));
+        ByteBuf in = null;
+        if(msg instanceof ByteBuf) {
+            in = (ByteBuf)msg;
+            System.out.println("Server received: " + in.toString(CharsetUtil.UTF_8));
+        }
         // 将收到的信息写回给发送者,而不冲刷出战消息
-        ctx.write(in);
+        ctx.channel().writeAndFlush(in);
     }
 
     @Override

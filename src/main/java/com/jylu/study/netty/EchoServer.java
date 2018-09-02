@@ -5,8 +5,8 @@ import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.channel.socket.nio.NioSocketChannel;
 
 import java.net.InetSocketAddress;
 
@@ -23,28 +23,34 @@ public class EchoServer {
 
     private final int port;
 
-    public EchoServer(int port){
+    private EchoServer(int port){
         this.port = port;
     }
 
-    public void start() throws InterruptedException {
+    private void start() throws InterruptedException {
         final EchoServerHandler serverHandler = new EchoServerHandler();
-        EventLoopGroup group = new NioEventLoopGroup();
+        EventLoopGroup boss = new NioEventLoopGroup();
+        EventLoopGroup work = new NioEventLoopGroup();
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
-            bootstrap.group(group)
+            // 1. 绑定两个线程组,分别用来处理客户端通道的accept事件和读写事件
+            bootstrap.group(boss, work)
+                    // 2. 绑定服务端的通道NioServerSocketChannel
                     .channel(NioServerSocketChannel.class)
-                    .localAddress(new InetSocketAddress(port))
-                    .childHandler(new ChannelInitializer<SocketChannel>() {
+                    // 3. 给读写事件的线程通道绑定handel去真正处理读写事件
+                    .childHandler(new ChannelInitializer<NioSocketChannel>() {
                         @Override
-                        protected void initChannel(SocketChannel ch) throws Exception {
+                        protected void initChannel(NioSocketChannel ch) throws Exception {
                             ch.pipeline().addLast(serverHandler);
                         }
-                    });
+                    })
+                    // 4. 监听端口
+                    .localAddress(new InetSocketAddress(port));
             ChannelFuture future = bootstrap.bind().sync();
             future.channel().closeFuture().sync();
         } finally {
-            group.shutdownGracefully().sync();
+            boss.shutdownGracefully().sync();
+            work.shutdownGracefully().sync();
         }
     }
 
