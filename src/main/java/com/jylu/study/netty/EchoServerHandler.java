@@ -21,7 +21,7 @@ import io.netty.util.CharsetUtil;
 public class EchoServerHandler extends ChannelInboundHandlerAdapter {
 
     /**
-     * 读取客户端通道的数据
+     * 读取客户端通道的数据,并向客户端返回响应
      * @param ctx  ctx
      * @param msg  msg
      * @throws Exception

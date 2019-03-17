@@ -29,19 +29,19 @@ public class EchoServer {
 
     private void start() throws InterruptedException {
         final EchoServerHandler serverHandler = new EchoServerHandler();
-        EventLoopGroup boss = new NioEventLoopGroup();
-        EventLoopGroup work = new NioEventLoopGroup();
+        EventLoopGroup bossGroup = new NioEventLoopGroup();
+        EventLoopGroup workerGroup = new NioEventLoopGroup();
         try {
             ServerBootstrap bootstrap = new ServerBootstrap();
             // 1. 绑定两个线程组,分别用来处理客户端通道的accept事件和读写事件
-            bootstrap.group(boss, work)
+            bootstrap.group(bossGroup, workerGroup)
                     // 2. 绑定服务端的通道NioServerSocketChannel
                     .channel(NioServerSocketChannel.class)
                     // 3. 给读写事件的线程通道绑定handel去真正处理读写事件
                     .childHandler(new ChannelInitializer<NioSocketChannel>() {
                         @Override
                         protected void initChannel(NioSocketChannel ch) throws Exception {
-                            ch.pipeline().addLast(serverHandler);
+                            ch.pipeline().addLast("EchoServerHandler", serverHandler);
                         }
                     })
                     // 4. 监听端口
@@ -49,8 +49,8 @@ public class EchoServer {
             ChannelFuture future = bootstrap.bind().sync();
             future.channel().closeFuture().sync();
         } finally {
-            boss.shutdownGracefully().sync();
-            work.shutdownGracefully().sync();
+            bossGroup.shutdownGracefully().sync();
+            workerGroup.shutdownGracefully().sync();
         }
     }
 
