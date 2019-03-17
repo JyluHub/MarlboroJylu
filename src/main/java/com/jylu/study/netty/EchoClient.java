@@ -6,8 +6,16 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldPrepender;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
+import io.netty.util.CharsetUtil;
 
 import java.net.InetSocketAddress;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * ClassName: EchoClient <br/>
@@ -40,6 +48,10 @@ public class EchoClient {
                     .handler(new ChannelInitializer<NioSocketChannel>() {
                         @Override
                         protected void initChannel(NioSocketChannel ch) throws Exception {
+//                            ch.pipeline().addLast("LengthFieldBasedFrameDecoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
+//                            ch.pipeline().addLast("LengthFieldPrepender", new LengthFieldPrepender(4));
+//                            ch.pipeline().addLast("StringDecoder", new StringDecoder(CharsetUtil.UTF_8));
+//                            ch.pipeline().addLast("StringEncoder", new StringEncoder(CharsetUtil.UTF_8));
                             ch.pipeline().addLast(new EchoClientHandler());
                         }
                     })
@@ -52,6 +64,19 @@ public class EchoClient {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        new EchoClient("localhost", 8888).start();
+        ExecutorService executor = Executors.newFixedThreadPool(100);
+        for(int i = 0; i < 100; i++){
+            executor.execute(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        new EchoClient("localhost", 8888).start();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+        }
     }
+
 }

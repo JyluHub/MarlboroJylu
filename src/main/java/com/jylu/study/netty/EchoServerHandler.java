@@ -8,6 +8,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.util.CharsetUtil;
 
+import java.util.UUID;
+
 /**
  * ClassName: EchoServerHandler <br/>
  * Description: EchoServerHandler: @Sharable注解表示一个ChannelHandler可以被多个Channel安全共享<br/>
@@ -31,10 +33,10 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
         ByteBuf in = null;
         if(msg instanceof ByteBuf) {
             in = (ByteBuf)msg;
-            System.out.println("Server received: " + in.toString(CharsetUtil.UTF_8));
+            System.out.println("Server received: " + in.toString(CharsetUtil.UTF_8) + ":" + ctx.channel().remoteAddress());
         }
-        // 将收到的信息写回给发送者,而不冲刷出战消息
-        ctx.channel().writeAndFlush(in);
+        // 将收到的信息写回给发送者
+        ctx.channel().writeAndFlush("Write to Client:" + UUID.randomUUID());
     }
 
     @Override

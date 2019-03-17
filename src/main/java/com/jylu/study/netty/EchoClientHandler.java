@@ -30,6 +30,8 @@ public class EchoClientHandler extends SimpleChannelInboundHandler<ByteBuf> {
         // 打印收到的消息
         if(msg != null){
             System.out.println("Client received: " + msg.toString(CharsetUtil.UTF_8));
+        } else {
+            System.err.println("No Data return");
         }
         ctx.channel().close();
     }

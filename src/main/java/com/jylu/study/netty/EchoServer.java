@@ -7,6 +7,11 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldPrepender;
+import io.netty.handler.codec.string.StringDecoder;
+import io.netty.handler.codec.string.StringEncoder;
+import io.netty.util.CharsetUtil;
 
 import java.net.InetSocketAddress;
 
@@ -41,6 +46,10 @@ public class EchoServer {
                     .childHandler(new ChannelInitializer<NioSocketChannel>() {
                         @Override
                         protected void initChannel(NioSocketChannel ch) throws Exception {
+//                            ch.pipeline().addLast("LengthFieldBasedFrameDecoder", new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE, 0, 4, 0, 4));
+//                            ch.pipeline().addLast("LengthFieldPrepender", new LengthFieldPrepender(4));
+//                            ch.pipeline().addLast("StringDecoder", new StringDecoder(CharsetUtil.UTF_8));
+//                            ch.pipeline().addLast("StringEncoder", new StringEncoder(CharsetUtil.UTF_8));
                             ch.pipeline().addLast("EchoServerHandler", serverHandler);
                         }
                     })
