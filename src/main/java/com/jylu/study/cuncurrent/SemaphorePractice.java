@@ -22,7 +22,7 @@ class SemaphoreTask implements Runnable{
 	
 	private final Semaphore semaphore;
 	
-	public SemaphoreTask(Semaphore semaphore){
+	SemaphoreTask(Semaphore semaphore){
 		this.semaphore = semaphore;
 	}
 
